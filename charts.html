@@ -1,125 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luke Chambers</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.classList.add('dark-mode');
-            renderChart();
-        });
+      // ------------DarkMode--------------------------------------------------------------------------------
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("dark-mode");
+        renderLineChart();
+        renderBarChart();
+        renderDoughnutChart();
+      });
 
-        function renderChart() {
-            const ctx = document.getElementById('incomeChart').getContext('2d');
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector(".navbar").classList.toggle("bg-dark");
+        document.querySelector(".navbar").classList.toggle("bg-light");
+        document.querySelector(".navbar").classList.toggle("navbar-dark");
+        document.querySelector(".navbar").classList.toggle("navbar-light");
+        document.querySelector(".footer").classList.toggle("bg-dark");
+        document.querySelector(".footer").classList.toggle("bg-light");
+        document.querySelector(".footer").classList.toggle("text-dark");
+        document.querySelector(".footer").classList.toggle("text-white");
+        document
+          .getElementById("toggleButton")
+          .classList.toggle("btn-outline-dark");
+        document
+          .getElementById("toggleButton")
+          .classList.toggle("btn-outline-light");
+        document.getElementById("toggleButton").innerText =
+          document.getElementById("toggleButton").innerText === "Light Mode"
+            ? "Dark Mode"
+            : "Light Mode";
+      }
+      // ------------DarkModeEnd--------------------------------------------------------------------------------
+      // ------------chartSpecific--------------------------------------------------------------------------------
+      function renderLineChart() {
+        const ctx = document.getElementById("incomeLineChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: [
+              1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
+              2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+              2018, 2019, 2020, 2021, 2022, 2023,
+            ],
+            datasets: [
+              {
+                label: "Fairfield",
+                data: [
+                  33696480, 35493003, 37774662, 40157170, 45541904, 45879183,
+                  45909918, 49087072, 49825437, 53997082, 54376922, 54675092,
+                  61170866, 63124505, 62430893, 63355293, 64665982, 65551455,
+                  69676883, 70526551, 71916386, 72439814, 72186022, 74957760,
+                  75500965, 78210463, 81716139, 84100694,
+                ],
+                borderColor: "#FF6B6B",
+                fill: false,
+              },
+              {
+                label: "Hartford",
+                data: [
+                  26898748, 27639527, 29124966, 31179695, 33356736, 33248696,
+                  34729163, 35612736, 35406514, 36975806, 39633475, 42921828,
+                  43947752, 45863813, 44274036, 45213985, 45749502, 47883167,
+                  47695245, 48631010, 49591846, 49999209, 50436482, 51296518,
+                  53419743, 52945774, 54259012, 58189535,
+                ],
+                borderColor: "#6BFF6B",
+                fill: false,
+              },
+              {
+                label: "Litchfield",
+                data: [
+                  4365358, 5170698, 5167178, 5576690, 6900625, 5920519, 6082672,
+                  6548866, 7333221, 7116963, 7553925, 7799311, 7954122, 8329887,
+                  8375695, 8520779, 8595547, 8761712, 8889811, 9232346, 9329332,
+                  9467961, 9636773, 9763442, 9925746, 9914997, 10557219,
+                  11118794,
+                ],
+                borderColor: "#6B6BFF",
+                fill: false,
+              },
+              {
+                label: "Middlesex",
+                data: [
+                  4671155, 5031970, 5613419, 5832431, 6731934, 6370627, 6750722,
+                  6952777, 7235057, 7481751, 7936114, 8436352, 8606830, 9126613,
+                  8969047, 9106675, 8971177, 9296396, 9389062, 9744374, 9819565,
+                  9845776, 10163877, 10450093, 10445466, 10920750, 10955473,
+                  11218818,
+                ],
+                borderColor: "#FFD166",
+                fill: false,
+              },
+              {
+                label: "New Haven",
+                data: [
+                  19179499, 19735982, 20968317, 22201518, 24365713, 23846936,
+                  25761396, 26867011, 29551248, 29148878, 31505953, 28078652,
+                  29849683, 32108162, 32311381, 31231247, 31315499, 31845590,
+                  32319935, 32862807, 33805297, 34165565, 34591403, 34035727.65,
+                  34711678, 34938969, 35583465, 36231635,
+                ],
+                borderColor: "#06D6A0",
+                fill: false,
+              },
+              {
+                label: "New London",
+                data: [
+                  6328663, 6618340, 7066200, 7214642, 7477883, 8207701, 8321057,
+                  8800957, 8846097, 9239506, 9262191, 9680065, 9950069,
+                  10144455, 9957685, 10204983, 10365688, 10497067, 10507942,
+                  10932363, 11719479, 11291714, 11209252, 11183553, 11623197,
+                  11617037, 12250755, 13027942,
+                ],
+                borderColor: "#118AB2",
+                fill: false,
+              },
+              {
+                label: "Tolland",
+                data: [
+                  2696884, 2727267, 3074823, 3270713, 3439465, 3689181, 4061832,
+                  3895546, 4004986, 4166127, 4290144, 4434396, 4784526, 5227274,
+                  5138559, 5587170, 5581290, 5563697, 5598210, 5909543, 6039390,
+                  6233162, 6100736, 6036877, 6054336, 4917511, 6377702, 6510857,
+                ],
+                borderColor: "#EF476F",
+                fill: false,
+              },
+              {
+                label: "Windham",
+                data: [
+                  1743114, 1859366, 1962708, 2012285, 2426536, 2525662, 2361019,
+                  2558306, 2636580, 2834107, 2874212, 2935571, 3049985, 3261117,
+                  3167388, 3247755, 3304296, 3318912, 3279166, 3338753, 3216444,
+                  3259930, 3243915, 3296758, 3140495, 3512395, 3229744, 3535872,
+                ],
+                borderColor: "#073B4C",
+                fill: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: "top",
+              },
+              title: {
+                display: true,
+                text: "Total Operating Income by County Over Years",
+              },
+            },
+          },
+        });
+      }
+      function renderBarChart() {
+        const ctx = document.getElementById("incomeBarChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: [
+              "Fairfield",
+              "Hartford",
+              "Litchfield",
+              "Middlesex",
+              "New Haven",
+              "New London",
+              "Tolland",
+              "Windham"
+            ], 
+            datasets: [
+              {
+                label: "Total Operating Income",
+                data: [1677944596, 1196124519, 223910189, 236074301, 833119146.7, 273546483, 135412204, 81132391],
+                backgroundColor: "#FF6B6B"
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: "Total Yearly Operating Income by County",
+              },
+            },
+          },
+        });
+      }
+      function renderDoughnutChart() {
+            const ctx = document.getElementById('incomeDoughnutChart').getContext('2d');
             new Chart(ctx, {
-                type: 'line',
+                type: 'doughnut',
                 data: {
-                    labels: [1996, 1997, 1998, 1999, 2000], // Example years, replace with actual data
-                    datasets: [
-                        {
-                            label: 'Fairfield',
-                            data: [33696480, 34000000, 35000000, 36000000, 37000000], // Replace with actual data
-                            borderColor: 'red',
-                            fill: false
-                        },
-                        {
-                            label: 'Hartford',
-                            data: [26898748, 27500000, 28000000, 29000000, 30000000],
-                            borderColor: 'blue',
-                            fill: false
-                        }
-                    ]
+                    labels: [
+                    "Fairfield",
+                    "Hartford",
+                    "Litchfield",
+                    "Middlesex",
+                    "New Haven",
+                    "New London",
+                    "Tolland",
+                    "Windham"
+                    ], 
+                    datasets: [{
+                        label: 'Total Operating Income',
+                        data: [1677944596, 1196124519, 223910189, 236074301, 833119146.7, 273546483, 135412204, 81132391],
+                        backgroundColor: [
+                            "#FF6B6B","#6BFF6B","#6B6BFF", "#FFD166","#06D6A0","#118AB2","#EF476F","#073B4C"
+                        ]
+                    }]
                 },
                 options: {
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'top',
+                            position: 'top'
                         },
                         title: {
                             display: true,
-                            text: 'Total Operating Income by County Over Years'
+                            text: 'Proportion of Total Operating Income by County'
                         }
                     }
                 }
             });
         }
+      // ------------chartSpecificEnd--------------------------------------------------------------------------------
     </script>
     <style>
-        html, body {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        body {
-            padding-top: 56px;
-            transition: background 0.3s, color 0.3s;
-            flex: 1;
-        }
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-        .dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-        .dark-mode .navbar, .dark-mode .footer {
-            background-color: #222;
-        }
-        .container {
-            flex: 1;
-        }
-        .footer {
-            margin-top: auto;
-        }
+      html,
+      body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      body {
+        padding-top: 56px;
+        transition: background 0.3s, color 0.3s;
+        flex: 1;
+      }
+      #map {
+        height: 70vh;
+        width: 100%;
+      }
+      .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .container {
+        flex: 1;
+      }
+      .footer {
+        margin-top: auto;
+      }
     </style>
-</head>
-<body class="dark-mode">
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Luke Chambers</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="convertAgs.html">Convert AGS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
-                    <li class="nav-item"><a class="nav-link" href="charts.html">Charts</a></li>
-                </ul>
-                <button class="btn btn-outline-light" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-            </div>
+      <div class="container">
+        <a class="navbar-brand" href="#">Luke Chambers</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="convertAgs.html">Convert AGS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="map.html">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="charts.html">Charts</a>
+            </li>
+          </ul>
+          <button
+            class="btn btn-outline-light"
+            id="toggleButton"
+            onclick="toggleDarkMode()"
+          >
+            Light Mode
+          </button>
         </div>
+      </div>
     </nav>
     <div class="container mt-4">
-        <header class="text-center mb-4">
-            <h1>Welcome to Luke Chambers</h1>
-        </header>
-        <main>
-            <div class="row">
-                <div class="col-md-8">
-                    <section>
-                        <h2>Main Content</h2>
-                        <p class="lead">This is a paragraph inside the main content area.</p>
-                        <canvas id="incomeChart"></canvas>
-                    </section>
-                </div>
-                <div class="col-md-4">
-                    <div id="map" class="border rounded shadow"></div>
-                </div>
+      <header class="text-center mb-4">
+        <h1>Chart Examples</h1>
+      </header>
+      <main>
+        <div class="row">
+          <div class="col-md-12">
+            <section>
+              <h2>Connecticut Library Operating Income</h2>
+              <p class="lead">
+                Connecticut Counties' Yearly Library Operating Income
+              </p>
+              <canvas id="incomeLineChart"></canvas>
+            </section>
+          </div>
+          <div class="row mt-5 mb-5 ">
+            <div class="col-md-6">
+              <section>
+                <p class="lead">
+                  Connecticut Total Library Operating Income Since 1996
+                </p>
+                <canvas id="incomeBarChart"></canvas>
+              </section>
             </div>
-        </main>
+            <div class="col-md-6">
+                <section>
+                  <p class="lead">
+                    Connecticut Total Library Operating Income Since 1996
+                  </p>
+                  <canvas id="incomeDoughnutChart"></canvas>
+                </section>
+              </div>
+        </div>
+      </main>
     </div>
     <footer class="footer bg-dark text-white text-center py-3">
-        <p>&copy; 2025 Luke Chambers. All rights reserved.</p>
+      <p>&copy; 2025 Luke Chambers. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
