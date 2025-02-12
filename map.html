@@ -1,169 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Webpage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luke Chambers</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAu44D9inPImPsMQYOlLW6SdZF9Yug2yg&callback=initMap"
+      async
+      defer
+    ></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.body.classList.add('dark-mode');
-            renderChart();
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("dark-mode");
+      });
+    //   const data = [];
+    //   for (let i = 1; i <= 30; i++) {
+    //     const start = new Date("2020-01-01T00:00:00Z").getTime();
+    //     const end = new Date("2024-12-15T23:59:59Z").getTime();
+    //     const randomTime = new Date(start + Math.random() * (end - start));
+    //     let collectDate = randomTime.toISOString();
+    //     data.push({
+    //       uuid: crypto.randomUUID(),
+    //       sampleBoring: `BOR${String(i).padStart(3, "0")}`,
+    //       documented: Math.random() < 0.5,
+    //       lat: 39.012725152704185 + (Math.random() - 0.5) * 0.03,
+    //       lng: -83.00093777424696 + (Math.random() - 0.5) * 0.05,
+    //       collected: collectDate,
+    //     });
+    //   }
+      const data = [
+    {
+        "uuid": "a5529c31-633a-4c4e-956a-82aa10af938d",
+        "sampleBoring": "BOR001",
+        "documented": true,
+        "lat": 39.01903840101244,
+        "lng": -83.01568968015444,
+        "collected": "2024-10-28T14:15:51.060Z"
+    },
+    {
+        "uuid": "c7bd9f41-9e1b-4d42-9958-cac0a63e51f0",
+        "sampleBoring": "BOR002",
+        "documented": true,
+        "lat": 39.006158635201174,
+        "lng": -82.98744111519012,
+        "collected": "2024-12-05T09:17:57.654Z"
+    },
+    {
+        "uuid": "99a0a592-6c8e-4adb-8690-61979eee13be",
+        "sampleBoring": "BOR003",
+        "documented": false,
+        "lat": 39.0230328640203,
+        "lng": -82.99290466149787,
+        "collected": "2024-10-26T21:09:56.411Z"
+    },
+    {
+        "uuid": "fa7370c8-b2b4-4303-b241-39630a09c301",
+        "sampleBoring": "BOR004",
+        "documented": true,
+        "lat": 39.01602917930994,
+        "lng": -82.98129717764155,
+        "collected": "2022-05-02T19:02:22.308Z"
+    },
+    {
+        "uuid": "f8dcb23c-58aa-4398-b3ea-34c41e7c88c1",
+        "sampleBoring": "BOR005",
+        "documented": false,
+        "lat": 39.01961864141192,
+        "lng": -83.00128614541617,
+        "collected": "2021-10-16T22:15:30.220Z"
+    },
+    {
+        "uuid": "403b281c-041d-4d44-930c-3a362330755f",
+        "sampleBoring": "BOR006",
+        "documented": true,
+        "lat": 39.0040530966356,
+        "lng": -83.02520824295881,
+        "collected": "2021-09-08T04:27:49.543Z"
+    },
+    {
+        "uuid": "f221c5f5-fffe-4334-b681-74cdb834f87a",
+        "sampleBoring": "BOR007",
+        "documented": true,
+        "lat": 39.02708238498292,
+        "lng": -83.00270592319293,
+        "collected": "2023-09-04T03:29:13.462Z"
+    },
+    {
+        "uuid": "28787a06-b88e-4eae-973b-6a6976e82861",
+        "sampleBoring": "BOR008",
+        "documented": true,
+        "lat": 39.01708477677616,
+        "lng": -83.00211342912209,
+        "collected": "2022-10-20T23:36:30.188Z"
+    },
+    {
+        "uuid": "0928e8af-74df-40e0-9acb-588624a57378",
+        "sampleBoring": "BOR009",
+        "documented": false,
+        "lat": 39.01067302265353,
+        "lng": -83.01824488952697,
+        "collected": "2020-07-21T13:25:19.872Z"
+    },
+    {
+        "uuid": "ad06912f-ee34-4d17-8744-fef22843c9e3",
+        "sampleBoring": "BOR010",
+        "documented": true,
+        "lat": 39.00039738572085,
+        "lng": -82.99373083480084,
+        "collected": "2024-07-17T17:31:28.921Z"
+    },
+    {
+        "uuid": "e206aeda-dc15-4212-aa1c-324dbb3a153c",
+        "sampleBoring": "BOR011",
+        "documented": true,
+        "lat": 39.02218272845973,
+        "lng": -82.99684751199167,
+        "collected": "2022-02-03T09:07:31.564Z"
+    },
+    {
+        "uuid": "99c64804-69e5-49b3-9283-ce9c858a7808",
+        "sampleBoring": "BOR012",
+        "documented": false,
+        "lat": 39.00182219124869,
+        "lng": -83.00984720309039,
+        "collected": "2023-05-31T08:28:43.112Z"
+    },
+    {
+        "uuid": "a1000a1b-480f-4f21-8296-241c09eb8980",
+        "sampleBoring": "BOR013",
+        "documented": true,
+        "lat": 39.01021875971562,
+        "lng": -82.99999875202818,
+        "collected": "2024-09-26T12:23:36.745Z"
+    },
+    {
+        "uuid": "839a4b0d-694d-4e13-931c-77a9329d55a3",
+        "sampleBoring": "BOR014",
+        "documented": true,
+        "lat": 39.017561740307016,
+        "lng": -83.01579342924876,
+        "collected": "2022-04-12T12:11:08.550Z"
+    },
+    {
+        "uuid": "803d9166-80f7-4437-a251-fc5009ee1fe3",
+        "sampleBoring": "BOR015",
+        "documented": false,
+        "lat": 39.00356428552473,
+        "lng": -83.01659695966705,
+        "collected": "2022-02-09T11:59:43.474Z"
+    },
+    {
+        "uuid": "00ea6b3f-4cf1-4613-b194-9a6e04376386",
+        "sampleBoring": "BOR016",
+        "documented": false,
+        "lat": 39.012630677982685,
+        "lng": -82.97818956337238,
+        "collected": "2022-05-06T04:41:18.995Z"
+    },
+    {
+        "uuid": "cf6a4d8c-1d00-47e1-8cf3-0a9133887637",
+        "sampleBoring": "BOR017",
+        "documented": false,
+        "lat": 39.01011786827967,
+        "lng": -82.99849929358429,
+        "collected": "2023-11-26T22:31:46.228Z"
+    },
+    {
+        "uuid": "86bf1875-794c-4a05-b619-e83d636df5b1",
+        "sampleBoring": "BOR018",
+        "documented": false,
+        "lat": 39.00671143399015,
+        "lng": -83.00550886091301,
+        "collected": "2024-04-09T17:18:00.301Z"
+    },
+    {
+        "uuid": "179bf8f6-7d8c-427c-b723-70cd309c8446",
+        "sampleBoring": "BOR019",
+        "documented": true,
+        "lat": 39.01019081339431,
+        "lng": -82.98344691849708,
+        "collected": "2020-08-31T22:15:41.495Z"
+    },
+    {
+        "uuid": "8d48c6d2-070b-4004-951f-6353a27b8682",
+        "sampleBoring": "BOR020",
+        "documented": false,
+        "lat": 38.999753908459084,
+        "lng": -82.98890776119619,
+        "collected": "2023-10-04T18:53:46.096Z"
+    },
+    {
+        "uuid": "343169c8-f91f-48a4-98f8-c5f807fb4029",
+        "sampleBoring": "BOR021",
+        "documented": false,
+        "lat": 39.009528115457954,
+        "lng": -83.00097088005093,
+        "collected": "2020-11-13T11:10:46.782Z"
+    },
+    {
+        "uuid": "7ae1b74d-e7c2-49d9-beb3-f326ae22f29d",
+        "sampleBoring": "BOR022",
+        "documented": false,
+        "lat": 39.019078434606804,
+        "lng": -83.00499246704615,
+        "collected": "2021-12-10T18:12:35.975Z"
+    },
+    {
+        "uuid": "e7ab7065-0ad5-4815-9226-3ac4eec33ed8",
+        "sampleBoring": "BOR023",
+        "documented": false,
+        "lat": 39.01284940246296,
+        "lng": -82.9909835976042,
+        "collected": "2023-10-30T21:41:54.366Z"
+    },
+    {
+        "uuid": "25c04d90-801c-4b88-8dd2-1dfc85738473",
+        "sampleBoring": "BOR024",
+        "documented": false,
+        "lat": 39.02422538347909,
+        "lng": -82.99939905783097,
+        "collected": "2024-03-19T20:59:08.770Z"
+    },
+    {
+        "uuid": "ad99bb7e-441b-40d7-b80d-8a5fe08204ad",
+        "sampleBoring": "BOR025",
+        "documented": false,
+        "lat": 39.0225549888318,
+        "lng": -82.97849294953575,
+        "collected": "2020-11-08T13:46:49.381Z"
+    },
+    {
+        "uuid": "37fcb27d-fbcd-46b1-bc39-2463beb637d1",
+        "sampleBoring": "BOR026",
+        "documented": true,
+        "lat": 39.02270591909352,
+        "lng": -83.01533523692902,
+        "collected": "2020-11-30T04:18:15.147Z"
+    },
+    {
+        "uuid": "0dadbaae-6ff1-495c-8527-65b981ad3dad",
+        "sampleBoring": "BOR027",
+        "documented": false,
+        "lat": 39.02538277137848,
+        "lng": -82.99805486097407,
+        "collected": "2023-05-12T04:27:08.795Z"
+    },
+    {
+        "uuid": "3c197ee6-ef2c-4a9b-af51-0a604a83ba80",
+        "sampleBoring": "BOR028",
+        "documented": true,
+        "lat": 39.017004968804756,
+        "lng": -82.99910857809624,
+        "collected": "2024-07-03T09:20:05.211Z"
+    },
+    {
+        "uuid": "2e026ac7-acdf-4271-a01d-da3c6b5cebbc",
+        "sampleBoring": "BOR029",
+        "documented": false,
+        "lat": 38.99911336730561,
+        "lng": -82.9860824009405,
+        "collected": "2020-12-25T16:50:58.837Z"
+    },
+    {
+        "uuid": "04b8741f-c37c-48f4-bf56-4ddac49a9aff",
+        "sampleBoring": "BOR030",
+        "documented": false,
+        "lat": 39.009204396842335,
+        "lng": -83.02367684084415,
+        "collected": "2024-07-21T21:55:32.784Z"
+    }
+]
+      function initMap() {
+        var location = { lat: 39.012725152704185, lng: -83.00093777424696 };
+        let renderStyles = {
+          zoom: 14,
+          center: location,
+          styles: [],
+        };
+        if (document.body.classList.contains("dark-mode")) {
+          renderStyles.styles = [
+            { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+            {
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#242f3e" }],
+            },
+            {
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#746855" }],
+            },
+            {
+              featureType: "administrative.locality",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [{ color: "#263c3f" }],
+            },
+            {
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#6b9a76" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [{ color: "#38414e" }],
+            },
+            {
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#212a37" }],
+            },
+            {
+              featureType: "road",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9ca5b3" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [{ color: "#746855" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [{ color: "#1f2835" }],
+            },
+            {
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#f3d19c" }],
+            },
+            {
+              featureType: "transit",
+              elementType: "geometry",
+              stylers: [{ color: "#2f3948" }],
+            },
+            {
+              featureType: "transit.station",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#d59563" }],
+            },
+            {
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [{ color: "#17263c" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#515c6d" }],
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#17263c" }],
+            },
+          ];
+        } else {
+          renderStyles.styles = [];
+        }
+        var map = new google.maps.Map(
+          document.getElementById("map"),
+          renderStyles
+        );
+
+        data.forEach((entry) => {
+          const marker = new google.maps.Marker({
+            position: { lat: entry.lat, lng: entry.lng },
+            map: map,
+            title: entry.sampleBoring,
+          });
+
+          const contentString = `<div class=mapWindow><strong><p>Sample: ${entry.sampleBoring}</p></strong><p>Documented: ${entry.documented}</p><p>Time Collected: ${entry.collected}</p></div>`;
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: contentString,
+          });
+
+          marker.addListener("mouseover", () => {
+            infoWindow.open(map, marker);
+          });
+
+          marker.addListener("mouseout", () => {
+            infoWindow.close();
+          });
         });
-        const data = [];
-        for (let i = 1; i <= 300; i++) {
-            data.push({
-                uuid: crypto.randomUUID(),
-                sampleBoring: `BOR${String(i).padStart(3, '0')}`,
-                documented: Math.random() < 0.5,
-                lat: 39.012725152704185 + (Math.random() - 0.5) * 0.06,
-                lng: -83.00093777424696 + (Math.random() - 0.5) * 0.06
-            });
-        }
+      }
 
-        function initMap() {
-            var location = { lat: 39.012725152704185, lng: -83.00093777424696 };
-            var map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
-                center: location
-            });
-            
-            data.forEach(entry => {
-                const marker = new google.maps.Marker({
-                    position: { lat: entry.lat, lng: entry.lng },
-                    map: map,
-                    title: entry.sampleBoring
-                });
-                
-                const infoWindow = new google.maps.InfoWindow({
-                    content: `<strong>${entry.sampleBoring}</strong><br>Documented: ${entry.documented}`
-                });
-
-                marker.addListener("mouseover", () => {
-                    infoWindow.open(map, marker);
-                });
-
-                marker.addListener("mouseout", () => {
-                    infoWindow.close();
-                });
-            });
-        }
-        
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        function handleFileUpload(event, type) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const text = e.target.result;
-                if (type === 'ags') {
-                    const csvData = parseAgsFile(text);
-                    downloadFile(csvData, 'output.csv', 'text/csv');
-                } else if (type === 'csv') {
-                    const agsData = parseCsvFile(text);
-                    downloadFile(agsData, 'output.ags', 'text/plain');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function parseAgsFile(content) {
-            const lines = content.split("\n");
-            return lines.map(line => line.trim().replace(/"/g, "")).join("\n");
-        }
-
-        function parseCsvFile(content) {
-            const lines = content.split("\n");
-            return lines.map(line => line.trim() === "" ? "\n" : '"' + line.replace(/,/g, '","') + '"').join("\n");
-        }
-
-        function downloadFile(content, fileName, mimeType) {
-            const blob = new Blob([content], { type: mimeType });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector(".navbar").classList.toggle("bg-dark");
+        document.querySelector(".navbar").classList.toggle("bg-light");
+        document.querySelector(".navbar").classList.toggle("navbar-dark");
+        document.querySelector(".navbar").classList.toggle("navbar-light");
+        document.querySelector(".footer").classList.toggle("bg-dark");
+        document.querySelector(".footer").classList.toggle("bg-light");
+        document.querySelector(".footer").classList.toggle("text-dark");
+        document.querySelector(".footer").classList.toggle("text-white");
+        document
+          .getElementById("toggleButton")
+          .classList.toggle("btn-outline-dark");
+        document
+          .getElementById("toggleButton")
+          .classList.toggle("btn-outline-light");
+        document.getElementById("toggleButton").innerText =
+          document.getElementById("toggleButton").innerText === "Light Mode"
+            ? "Dark Mode"
+            : "Light Mode";
+        initMap();
+      }
     </script>
     <style>
-        html, body {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        body {
-            padding-top: 56px;
-            transition: background 0.3s, color 0.3s;
-            flex: 1;
-        }
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-        .dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-        .dark-mode .navbar, .dark-mode .footer {
-            background-color: #222;
-        }
-        .container {
-            flex: 1;
-        }
-        .footer {
-            margin-top: auto;
-        }
+      html,
+      body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      body {
+        padding-top: 56px;
+        transition: background 0.3s, color 0.3s;
+        flex: 1;
+      }
+      #map {
+        height: 70vh;
+        width: 100%;
+      }
+      .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .container {
+        flex: 1;
+      }
+      .footer {
+        margin-top: auto;
+      }
+      .mapWindow {
+        color: #121212;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Luke Chambers</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="convertAgs.html">Convert AGS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Map.html">Map</a></li>
-                    <li class="nav-item"><a class="nav-link" href="charts.html">Charts</a></li>
-                </ul>
-                <button class="btn btn-outline-light" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-            </div>
+      <div class="container">
+        <a class="navbar-brand" href="#">Luke Chambers</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="convertAgs.html">Convert AGS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="map.html">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="charts.html">Charts</a>
+            </li>
+          </ul>
+          <button
+            class="btn btn-outline-light"
+            id="toggleButton"
+            onclick="toggleDarkMode()"
+          >
+            Light Mode
+          </button>
         </div>
+      </div>
     </nav>
     <div class="container mt-4">
-        <header class="text-center mb-4">
-            <h1>Welcome to Luke Chambers</h1>
-        </header>
-        <main>
-            <div class="row">
-                <div class="col-md-8">
-                    <section>
-                        <h2>Main Content</h2>
-                        <p class="lead">This is a paragraph inside the main content area.</p>
-                        <input type="file" accept=".ags" class="form-control mb-2" onchange="handleFileUpload(event, 'ags')">
-                        <input type="file" accept=".csv" class="form-control" onchange="handleFileUpload(event, 'csv')">
-                    </section>
-                </div>
-                <div class="col-md-4">
-                    <div id="map" class="border rounded shadow"></div>
-                </div>
-            </div>
-        </main>
+      <header class="text-center mb-4">
+        <h1>Map Example</h1>
+      </header>
+      <main>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="map" class="border rounded shadow"></div>
+          </div>
+        </div>
+      </main>
     </div>
     <footer class="footer bg-dark text-white text-center py-3">
-        <p>&copy; 2025 Luke Chambers. All rights reserved.</p>
+      <p>&copy; 2025 Luke Chambers. All rights reserved.</p>
     </footer>
-</body>
+  </body>
 </html>
