@@ -43,25 +43,31 @@
       function updateLoadingText(id, newText) {
         document.getElementById(id).innerText = newText;
         setTimeout(() => {
-            document.getElementById(id).innerText = "";
+          document.getElementById(id).innerText = "";
         }, 3000);
       }
 
       function handleFileUpload(event, type) {
         const file = event.target.files[0];
         if (!file) return;
-        const fileNameOnly = file.name.replace(/\.[^/.]+$/, "")
+        const fileNameOnly = file.name.replace(/\.[^/.]+$/, "");
         const reader = new FileReader();
         reader.onload = function (e) {
           const text = e.target.result;
           if (type === "ags") {
             const csvData = parseAgsFile(text);
             downloadFile(csvData, `${fileNameOnly}.csv`, "text/csv");
-            updateLoadingText("convertCsv", "Converted to CSV. Please check your downloads location");
+            updateLoadingText(
+              "convertCsv",
+              "Converted to CSV. Please check your downloads location"
+            );
           } else if (type === "csv") {
             const agsData = parseCsvFile(text);
             downloadFile(agsData, `${fileNameOnly}.ags`, "text/plain");
-            updateLoadingText("convertAgs", "Converted to AGS. Pleas check your downloads location");
+            updateLoadingText(
+              "convertAgs",
+              "Converted to AGS. Pleas check your downloads location"
+            );
           }
         };
         reader.readAsText(file);
